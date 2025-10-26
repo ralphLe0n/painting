@@ -1,0 +1,842 @@
+[
+  {
+    "id": "1",
+    "name": "Abaddon Black",
+    "hex": "#231F20",
+    "type": "Base",
+    "primaryColor": "Black"
+  },
+  {
+    "id": "2",
+    "name": "Corax White",
+    "hex": "#FFFFFF",
+    "type": "Base",
+    "primaryColor": "White"
+  },
+  {
+    "id": "3",
+    "name": "Grey Seer",
+    "hex": "#9FA6B0",
+    "type": "Base",
+    "primaryColor": "Grey"
+  },
+  {
+    "id": "4",
+    "name": "Wraithbone",
+    "hex": "#E0D9C7",
+    "type": "Base",
+    "primaryColor": "White"
+  },
+  {
+    "id": "5",
+    "name": "Mechanicus Standard Grey",
+    "hex": "#3D4B4D",
+    "type": "Base",
+    "primaryColor": "Grey"
+  },
+  {
+    "id": "6",
+    "name": "Leadbelcher",
+    "hex": "#888D91",
+    "type": "Base",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "7",
+    "name": "Retributor Armour",
+    "hex": "#B1834B",
+    "type": "Base",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "8",
+    "name": "Balthasar Gold",
+    "hex": "#8C6A2E",
+    "type": "Base",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "9",
+    "name": "Screamer Pink",
+    "hex": "#7C1645",
+    "type": "Base",
+    "primaryColor": "Pink"
+  },
+  {
+    "id": "10",
+    "name": "Khorne Red",
+    "hex": "#6A0F0F",
+    "type": "Base",
+    "primaryColor": "Red"
+  },
+  {
+    "id": "11",
+    "name": "Mephiston Red",
+    "hex": "#960C0C",
+    "type": "Base",
+    "primaryColor": "Red"
+  },
+  {
+    "id": "12",
+    "name": "Jokaero Orange",
+    "hex": "#EE3823",
+    "type": "Base",
+    "primaryColor": "Orange"
+  },
+  {
+    "id": "13",
+    "name": "Averland Sunset",
+    "hex": "#FDB825",
+    "type": "Base",
+    "primaryColor": "Yellow"
+  },
+  {
+    "id": "14",
+    "name": "Moot Green",
+    "hex": "#52B244",
+    "type": "Layer",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "15",
+    "name": "Caliban Green",
+    "hex": "#00401F",
+    "type": "Base",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "16",
+    "name": "Warpstone Glow",
+    "hex": "#1D7A3C",
+    "type": "Layer",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "17",
+    "name": "Caledor Sky",
+    "hex": "#366699",
+    "type": "Base",
+    "primaryColor": "Blue"
+  },
+  {
+    "id": "18",
+    "name": "Macragge Blue",
+    "hex": "#0D407F",
+    "type": "Base",
+    "primaryColor": "Blue"
+  },
+  {
+    "id": "19",
+    "name": "Kantor Blue",
+    "hex": "#021E44",
+    "type": "Base",
+    "primaryColor": "Blue"
+  },
+  {
+    "id": "20",
+    "name": "Naggaroth Night",
+    "hex": "#3D3354",
+    "type": "Base",
+    "primaryColor": "Purple"
+  },
+  {
+    "id": "21",
+    "name": "Daemonette Hide",
+    "hex": "#696684",
+    "type": "Base",
+    "primaryColor": "Purple"
+  },
+  {
+    "id": "22",
+    "name": "Rakarth Flesh",
+    "hex": "#A5958D",
+    "type": "Base",
+    "primaryColor": "Flesh"
+  },
+  {
+    "id": "23",
+    "name": "Zandri Dust",
+    "hex": "#9E915C",
+    "type": "Base",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "24",
+    "name": "Mournfang Brown",
+    "hex": "#640909",
+    "type": "Base",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "25",
+    "name": "Rhinox Hide",
+    "hex": "#45312A",
+    "type": "Base",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "26",
+    "name": "Evil Sunz Scarlet",
+    "hex": "#C01411",
+    "type": "Layer",
+    "primaryColor": "Red"
+  },
+  {
+    "id": "27",
+    "name": "Wild Rider Red",
+    "hex": "#E82F27",
+    "type": "Layer",
+    "primaryColor": "Red"
+  },
+  {
+    "id": "28",
+    "name": "Wazdakka Red",
+    "hex": "#8C0A0E",
+    "type": "Layer",
+    "primaryColor": "Red"
+  },
+  {
+    "id": "29",
+    "name": "Troll Slayer Orange",
+    "hex": "#E85E27",
+    "type": "Layer",
+    "primaryColor": "Orange"
+  },
+  {
+    "id": "30",
+    "name": "Fire Dragon Bright",
+    "hex": "#F58223",
+    "type": "Layer",
+    "primaryColor": "Orange"
+  },
+  {
+    "id": "31",
+    "name": "Yriel Yellow",
+    "hex": "#FFE900",
+    "type": "Layer",
+    "primaryColor": "Yellow"
+  },
+  {
+    "id": "32",
+    "name": "Flash Gitz Yellow",
+    "hex": "#FFF300",
+    "type": "Layer",
+    "primaryColor": "Yellow"
+  },
+  {
+    "id": "33",
+    "name": "Warboss Green",
+    "hex": "#2F8D3E",
+    "type": "Layer",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "34",
+    "name": "Skarsnik Green",
+    "hex": "#5A9E61",
+    "type": "Layer",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "35",
+    "name": "Sybarite Green",
+    "hex": "#29AC6F",
+    "type": "Layer",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "36",
+    "name": "Temple Guard Blue",
+    "hex": "#339999",
+    "type": "Layer",
+    "primaryColor": "Cyan"
+  },
+  {
+    "id": "37",
+    "name": "Teclis Blue",
+    "hex": "#367BAC",
+    "type": "Layer",
+    "primaryColor": "Blue"
+  },
+  {
+    "id": "38",
+    "name": "Lothern Blue",
+    "hex": "#34A5CF",
+    "type": "Layer",
+    "primaryColor": "Blue"
+  },
+  {
+    "id": "39",
+    "name": "Alaitoc Blue",
+    "hex": "#295788",
+    "type": "Layer",
+    "primaryColor": "Blue"
+  },
+  {
+    "id": "40",
+    "name": "Hoeth Blue",
+    "hex": "#5896C8",
+    "type": "Layer",
+    "primaryColor": "Blue"
+  },
+  {
+    "id": "41",
+    "name": "Xereus Purple",
+    "hex": "#47125A",
+    "type": "Layer",
+    "primaryColor": "Purple"
+  },
+  {
+    "id": "42",
+    "name": "Genestealer Purple",
+    "hex": "#7658A1",
+    "type": "Layer",
+    "primaryColor": "Purple"
+  },
+  {
+    "id": "43",
+    "name": "Screaming Skull",
+    "hex": "#D5CDB5",
+    "type": "Layer",
+    "primaryColor": "White"
+  },
+  {
+    "id": "44",
+    "name": "Pallid Wych Flesh",
+    "hex": "#CEC8B1",
+    "type": "Layer",
+    "primaryColor": "Flesh"
+  },
+  {
+    "id": "45",
+    "name": "Kislev Flesh",
+    "hex": "#D3A171",
+    "type": "Layer",
+    "primaryColor": "Flesh"
+  },
+  {
+    "id": "46",
+    "name": "Cadian Fleshtone",
+    "hex": "#C77E69",
+    "type": "Layer",
+    "primaryColor": "Flesh"
+  },
+  {
+    "id": "47",
+    "name": "Pink Horror",
+    "hex": "#8F2C6E",
+    "type": "Layer",
+    "primaryColor": "Pink"
+  },
+  {
+    "id": "48",
+    "name": "Emperor's Children",
+    "hex": "#B384A4",
+    "type": "Layer",
+    "primaryColor": "Pink"
+  },
+  {
+    "id": "49",
+    "name": "Fulgrim Pink",
+    "hex": "#F4ADCF",
+    "type": "Layer",
+    "primaryColor": "Pink"
+  },
+  {
+    "id": "50",
+    "name": "Ushabti Bone",
+    "hex": "#A89E8F",
+    "type": "Layer",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "51",
+    "name": "Baneblade Brown",
+    "hex": "#8A7F67",
+    "type": "Layer",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "52",
+    "name": "Balor Brown",
+    "hex": "#A47D29",
+    "type": "Layer",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "53",
+    "name": "Doombull Brown",
+    "hex": "#5A0F01",
+    "type": "Layer",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "54",
+    "name": "Nuln Oil",
+    "hex": "#14100D",
+    "type": "Shade",
+    "primaryColor": "Black"
+  },
+  {
+    "id": "55",
+    "name": "Agrax Earthshade",
+    "hex": "#3C2F19",
+    "type": "Shade",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "56",
+    "name": "Reikland Fleshshade",
+    "hex": "#7A3A20",
+    "type": "Shade",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "57",
+    "name": "Carroburg Crimson",
+    "hex": "#5B1420",
+    "type": "Shade",
+    "primaryColor": "Red"
+  },
+  {
+    "id": "58",
+    "name": "Druchii Violet",
+    "hex": "#49244C",
+    "type": "Shade",
+    "primaryColor": "Purple"
+  },
+  {
+    "id": "59",
+    "name": "Drakenhof Nightshade",
+    "hex": "#1D2D44",
+    "type": "Shade",
+    "primaryColor": "Blue"
+  },
+  {
+    "id": "60",
+    "name": "Athonian Camoshade",
+    "hex": "#364F29",
+    "type": "Shade",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "61",
+    "name": "Biel-Tan Green",
+    "hex": "#1A4423",
+    "type": "Shade",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "62",
+    "name": "Coelia Greenshade",
+    "hex": "#2D675E",
+    "type": "Shade",
+    "primaryColor": "Cyan"
+  },
+  {
+    "id": "63",
+    "name": "Seraphim Sepia",
+    "hex": "#5C3C1C",
+    "type": "Shade",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "64",
+    "name": "Casandora Yellow",
+    "hex": "#DC9F24",
+    "type": "Shade",
+    "primaryColor": "Yellow"
+  },
+  {
+    "id": "65",
+    "name": "Fuegan Orange",
+    "hex": "#DC4F16",
+    "type": "Shade",
+    "primaryColor": "Orange"
+  },
+  {
+    "id": "66",
+    "name": "Blood Angels Red",
+    "hex": "#A42724",
+    "type": "Contrast",
+    "primaryColor": "Red"
+  },
+  {
+    "id": "67",
+    "name": "Flesh Tearers Red",
+    "hex": "#7A0C05",
+    "type": "Contrast",
+    "primaryColor": "Red"
+  },
+  {
+    "id": "68",
+    "name": "Volupus Pink",
+    "hex": "#A9416B",
+    "type": "Contrast",
+    "primaryColor": "Pink"
+  },
+  {
+    "id": "69",
+    "name": "Magos Purple",
+    "hex": "#6B2F7E",
+    "type": "Contrast",
+    "primaryColor": "Purple"
+  },
+  {
+    "id": "70",
+    "name": "Shyish Purple",
+    "hex": "#75346D",
+    "type": "Contrast",
+    "primaryColor": "Purple"
+  },
+  {
+    "id": "71",
+    "name": "Leviadon Blue",
+    "hex": "#00355D",
+    "type": "Contrast",
+    "primaryColor": "Blue"
+  },
+  {
+    "id": "72",
+    "name": "Ultramarine Blue",
+    "hex": "#0E4672",
+    "type": "Contrast",
+    "primaryColor": "Blue"
+  },
+  {
+    "id": "73",
+    "name": "Akhelian Green",
+    "hex": "#1C5D4F",
+    "type": "Contrast",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "74",
+    "name": "Dark Angels Green",
+    "hex": "#184A30",
+    "type": "Contrast",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "75",
+    "name": "Warp Lightning",
+    "hex": "#3C6621",
+    "type": "Contrast",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "76",
+    "name": "Plaguebearer Flesh",
+    "hex": "#9E9F44",
+    "type": "Contrast",
+    "primaryColor": "Yellow"
+  },
+  {
+    "id": "77",
+    "name": "Iyanden Yellow",
+    "hex": "#E6C341",
+    "type": "Contrast",
+    "primaryColor": "Yellow"
+  },
+  {
+    "id": "78",
+    "name": "Nazdreg Yellow",
+    "hex": "#F7A425",
+    "type": "Contrast",
+    "primaryColor": "Yellow"
+  },
+  {
+    "id": "79",
+    "name": "Gryph-Charger Grey",
+    "hex": "#646F7B",
+    "type": "Contrast",
+    "primaryColor": "Grey"
+  },
+  {
+    "id": "80",
+    "name": "Space Wolves Grey",
+    "hex": "#6F8599",
+    "type": "Contrast",
+    "primaryColor": "Grey"
+  },
+  {
+    "id": "81",
+    "name": "Apothecary White",
+    "hex": "#C2C2C2",
+    "type": "Contrast",
+    "primaryColor": "White"
+  },
+  {
+    "id": "82",
+    "name": "Skeleton Horde",
+    "hex": "#B79E6A",
+    "type": "Contrast",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "83",
+    "name": "Aggaros Dunes",
+    "hex": "#A9864D",
+    "type": "Contrast",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "84",
+    "name": "Gore-Grunta Fur",
+    "hex": "#7C4F3A",
+    "type": "Contrast",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "85",
+    "name": "Cygor Brown",
+    "hex": "#6B4B36",
+    "type": "Contrast",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "86",
+    "name": "Snakebite Leather",
+    "hex": "#894F26",
+    "type": "Contrast",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "87",
+    "name": "Wyldwood",
+    "hex": "#4D3B2F",
+    "type": "Contrast",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "88",
+    "name": "Black Templar",
+    "hex": "#1D1D1D",
+    "type": "Contrast",
+    "primaryColor": "Black"
+  },
+  {
+    "id": "89",
+    "name": "Basilicanum Grey",
+    "hex": "#5F6368",
+    "type": "Contrast",
+    "primaryColor": "Grey"
+  },
+  {
+    "id": "90",
+    "name": "Guilliman Flesh",
+    "hex": "#D49B82",
+    "type": "Contrast",
+    "primaryColor": "Flesh"
+  },
+  {
+    "id": "91",
+    "name": "Darkoath Flesh",
+    "hex": "#C8826D",
+    "type": "Contrast",
+    "primaryColor": "Flesh"
+  },
+  {
+    "id": "92",
+    "name": "Fyreslayer Flesh",
+    "hex": "#E58862",
+    "type": "Contrast",
+    "primaryColor": "Flesh"
+  },
+  {
+    "id": "93",
+    "name": "Creed Camo",
+    "hex": "#6D6C39",
+    "type": "Contrast",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "94",
+    "name": "Militarum Green",
+    "hex": "#636549",
+    "type": "Contrast",
+    "primaryColor": "Green"
+  },
+  {
+    "id": "95",
+    "name": "Aethermatic Blue",
+    "hex": "#3F8999",
+    "type": "Contrast",
+    "primaryColor": "Cyan"
+  },
+  {
+    "id": "96",
+    "name": "Talassar Blue",
+    "hex": "#3B6C96",
+    "type": "Contrast",
+    "primaryColor": "Blue"
+  },
+  {
+    "id": "97",
+    "name": "Stormfiend",
+    "hex": "#5E3C53",
+    "type": "Technical",
+    "primaryColor": "Purple"
+  },
+  {
+    "id": "98",
+    "name": "Typhus Corrosion",
+    "hex": "#463B2C",
+    "type": "Technical",
+    "primaryColor": "Brown"
+  },
+  {
+    "id": "99",
+    "name": "Blood for the Blood God",
+    "hex": "#7C0A0C",
+    "type": "Technical",
+    "primaryColor": "Red"
+  },
+  {
+    "id": "100",
+    "name": "Nihilakh Oxide",
+    "hex": "#5D9B9A",
+    "type": "Technical",
+    "primaryColor": "Cyan"
+  },
+  {
+    "id": "101",
+    "name": "Ryza Rust",
+    "hex": "#EC631E",
+    "type": "Technical",
+    "primaryColor": "Orange"
+  },
+  {
+    "id": "102",
+    "name": "Skullcrusher Brass",
+    "hex": "#B48128",
+    "type": "Layer",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "103",
+    "name": "Gehenna's Gold",
+    "hex": "#C9842E",
+    "type": "Layer",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "104",
+    "name": "Auric Armour Gold",
+    "hex": "#CCA546",
+    "type": "Layer",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "105",
+    "name": "Liberator Gold",
+    "hex": "#D6A551",
+    "type": "Layer",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "106",
+    "name": "Runelord Brass",
+    "hex": "#997047",
+    "type": "Layer",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "107",
+    "name": "Ironbreaker",
+    "hex": "#A3A4A4",
+    "type": "Layer",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "108",
+    "name": "Stormhost Silver",
+    "hex": "#C7CBCF",
+    "type": "Layer",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "109",
+    "name": "Runefang Steel",
+    "hex": "#C3CDD0",
+    "type": "Layer",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "110",
+    "name": "Hashut Copper",
+    "hex": "#9B4B39",
+    "type": "Base",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "111",
+    "name": "Sycorax Bronze",
+    "hex": "#A8813E",
+    "type": "Layer",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "112",
+    "name": "Canoptek Alloy",
+    "hex": "#9A9FA0",
+    "type": "Layer",
+    "primaryColor": "Metallic"
+  },
+  {
+    "id": "113",
+    "name": "Celestia Grey",
+    "hex": "#90A0AE",
+    "type": "Layer",
+    "primaryColor": "Grey"
+  },
+  {
+    "id": "114",
+    "name": "Administratum Grey",
+    "hex": "#969696",
+    "type": "Layer",
+    "primaryColor": "Grey"
+  },
+  {
+    "id": "115",
+    "name": "Eshin Grey",
+    "hex": "#4B4F53",
+    "type": "Layer",
+    "primaryColor": "Grey"
+  },
+  {
+    "id": "116",
+    "name": "Dawnstone",
+    "hex": "#697075",
+    "type": "Layer",
+    "primaryColor": "Grey"
+  },
+  {
+    "id": "117",
+    "name": "Skavenblight Dinge",
+    "hex": "#353535",
+    "type": "Base",
+    "primaryColor": "Grey"
+  },
+  {
+    "id": "118",
+    "name": "White Scar",
+    "hex": "#FFFFFF",
+    "type": "Layer",
+    "primaryColor": "White"
+  },
+  {
+    "id": "119",
+    "name": "Ulthuan Grey",
+    "hex": "#C7E0EA",
+    "type": "Layer",
+    "primaryColor": "White"
+  },
+  {
+    "id": "120",
+    "name": "Celestra Grey",
+    "hex": "#90A8B0",
+    "type": "Base",
+    "primaryColor": "Grey"
+  }
+]
