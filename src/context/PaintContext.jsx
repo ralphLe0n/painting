@@ -27,6 +27,13 @@ export function PaintProvider({ children }) {
   // Load stock and wishlist from Firebase
   useEffect(() => {
     const loadData = async () => {
+      // Check if Firebase is configured
+      if (!db) {
+        console.log('Firebase not configured. Using local state only.')
+        setLoading(false)
+        return
+      }
+
       try {
         // Load stock
         const stockRef = collection(db, 'users', userId, 'inStock')
@@ -57,6 +64,12 @@ export function PaintProvider({ children }) {
   }, [])
 
   const addToStock = async (paint) => {
+    if (!db) {
+      // Use local state only
+      setStock([...stock, paint])
+      return
+    }
+
     try {
       const stockRef = collection(db, 'users', userId, 'inStock')
       const docRef = await addDoc(stockRef, {
@@ -72,6 +85,12 @@ export function PaintProvider({ children }) {
   }
 
   const removeFromStock = async (paint) => {
+    if (!db) {
+      // Use local state only
+      setStock(stock.filter(p => p.id !== paint.id))
+      return
+    }
+
     try {
       const paintInStock = stock.find(p => p.id === paint.id)
       if (paintInStock?.firestoreId) {
@@ -86,6 +105,12 @@ export function PaintProvider({ children }) {
   }
 
   const addToWishlist = async (paint) => {
+    if (!db) {
+      // Use local state only
+      setWishlist([...wishlist, paint])
+      return
+    }
+
     try {
       const wishlistRef = collection(db, 'users', userId, 'wishlist')
       const docRef = await addDoc(wishlistRef, {
@@ -101,6 +126,12 @@ export function PaintProvider({ children }) {
   }
 
   const removeFromWishlist = async (paint) => {
+    if (!db) {
+      // Use local state only
+      setWishlist(wishlist.filter(p => p.id !== paint.id))
+      return
+    }
+
     try {
       const paintInWishlist = wishlist.find(p => p.id === paint.id)
       if (paintInWishlist?.firestoreId) {
