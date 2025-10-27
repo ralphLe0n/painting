@@ -2,110 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom gradient backgrounds for Tailwind v4 */
-.bg-gradient-purple-pink {
-  background: linear-gradient(135deg, #f8fafc 0%, #dbeafe 50%, #fae8ff 100%);
-}
-
-.bg-gradient-header {
-  background: linear-gradient(90deg, #4f46e5 0%, #9333ea 50%, #ec4899 100%);
-}
-
-.bg-gradient-emerald {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-}
-
-.bg-gradient-amber {
-  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
-}
-
-.bg-gradient-red-pink {
-  background: linear-gradient(90deg, #ef4444 0%, #ec4899 100%);
-}
-
-.bg-gradient-preview {
-  background: linear-gradient(135deg, #eef2ff 0%, #faf5ff 50%, #fdf2f8 100%);
-}
-
-.bg-gradient-mixing-studio {
-  background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
-}
-
-.text-gradient-purple {
-  background: linear-gradient(90deg, #4f46e5 0%, #9333ea 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.border-purple-glow {
-  border: 2px solid #e9d5ff;
-}
-
-.gradient-border-animated {
-  position: relative;
-}
-
-.gradient-border-animated::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  background: linear-gradient(90deg, #4f46e5, #9333ea, #ec4899);
-  border-radius: 1rem;
-  filter: blur(8px);
-  opacity: 0.75;
-  z-index: -1;
-}
-
-/* Custom scrollbar styling */
+/* Custom scrollbar styling for dark theme */
 .scrollbar-thin::-webkit-scrollbar {
   width: 8px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
-  background-color: #f3f4f6;
+  background-color: #1e293b;
   border-radius: 9999px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: #d8b4fe;
+  background-color: #475569;
   border-radius: 9999px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: #c084fc;
-}
-
-/* Smooth animations */
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient 3s ease infinite;
-}
-
-/* Fade in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-in;
+  background-color: #64748b;
 }

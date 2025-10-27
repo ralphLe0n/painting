@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { Palette, Filter } from 'lucide-react'
 import ColorCard from './components/ColorCard'
 import SearchBar from './components/SearchBar'
 import MixingStudio from './components/MixingStudio'
@@ -43,107 +44,121 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
         <div className="text-center">
-          <div className="text-2xl font-bold text-gray-700 mb-2">Loading...</div>
-          <div className="text-gray-500">Loading your paint collection</div>
+          <div className="animate-pulse bg-slate-700 rounded-lg h-24 w-64 mb-4"></div>
+          <div className="text-xl font-medium text-slate-300">Loading your paint collection...</div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-purple-pink">
-      <header className="bg-gradient-header text-white p-8 shadow-2xl">
-        <div className="container mx-auto">
-          <h1 className="text-4xl font-bold mb-2 tracking-tight">Citadel Paint Mixer</h1>
-          <p className="text-purple-100 text-lg">Manage your paint collection and create custom mixes</p>
+    <div className="min-h-screen bg-slate-900 text-slate-100">
+      <header className="bg-slate-800 border-b border-slate-700 shadow-lg mb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center gap-3">
+            <Palette className="w-8 h-8 text-indigo-400" />
+            <h1 className="text-3xl font-bold text-slate-100">Citadel Paint Mixer</h1>
+          </div>
+          <p className="text-slate-400 mt-2">Manage your paint collection and create custom mixes</p>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
-        <div className="mb-8 flex gap-4 flex-wrap">
-          <div className="bg-gradient-emerald text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="text-sm font-medium opacity-90">In Stock</div>
-            <div className="text-2xl font-bold">{stock.length}</div>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="space-y-6">
+          {/* Stats */}
+          <div className="flex gap-4 flex-wrap">
+            <div className="bg-slate-800 rounded-xl border border-slate-700 shadow-lg px-6 py-4">
+              <div className="text-sm font-medium text-slate-400 mb-1">In Stock</div>
+              <div className="text-3xl font-bold text-green-400">{stock.length}</div>
+            </div>
+            <div className="bg-slate-800 rounded-xl border border-slate-700 shadow-lg px-6 py-4">
+              <div className="text-sm font-medium text-slate-400 mb-1">Wishlist</div>
+              <div className="text-3xl font-bold text-yellow-400">{wishlist.length}</div>
+            </div>
           </div>
-          <div className="bg-gradient-amber text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="text-sm font-medium opacity-90">Wishlist</div>
-            <div className="text-2xl font-bold">{wishlist.length}</div>
-          </div>
-        </div>
 
-        <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+          {/* Search Bar */}
+          <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
 
-        <div className="mb-8 flex flex-wrap gap-4 bg-white p-6 rounded-xl shadow-md">
-          <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Filter by Type
-            </label>
-            <select
-              value={filterType}
-              onChange={(e) => setFilterType(e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all bg-gray-50 hover:bg-white"
-            >
-              {paintTypes.map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
-            </select>
-          </div>
-          <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Filter by Color
-            </label>
-            <select
-              value={filterColor}
-              onChange={(e) => setFilterColor(e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all bg-gray-50 hover:bg-white"
-            >
-              {primaryColors.map(color => (
-                <option key={color} value={color}>{color}</option>
-              ))}
-            </select>
-          </div>
-          {(searchTerm || filterType !== 'All' || filterColor !== 'All') && (
-            <div className="flex items-end">
+          {/* Filter Panel */}
+          <div className="bg-slate-800 rounded-xl border border-slate-700 p-6 shadow-lg">
+            <div className="flex items-center gap-2 mb-4">
+              <Filter className="w-5 h-5 text-indigo-400" />
+              <h3 className="text-lg font-semibold text-slate-100">Filters</h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Filter by Type
+                </label>
+                <select
+                  value={filterType}
+                  onChange={(e) => setFilterType(e.target.value)}
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                >
+                  {paintTypes.map(type => (
+                    <option key={type} value={type}>{type}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Filter by Color
+                </label>
+                <select
+                  value={filterColor}
+                  onChange={(e) => setFilterColor(e.target.value)}
+                  className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                >
+                  {primaryColors.map(color => (
+                    <option key={color} value={color}>{color}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {(searchTerm || filterType !== 'All' || filterColor !== 'All') && (
               <button
                 onClick={() => {
                   setSearchTerm('')
                   setFilterType('All')
                   setFilterColor('All')
                 }}
-                className="px-6 py-3 bg-gradient-red-pink text-white rounded-xl hover:opacity-90 transition-all shadow-md hover:shadow-lg font-medium"
+                className="w-full mt-4 bg-slate-700 hover:bg-slate-600 text-slate-300 text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-200"
               >
                 Clear Filters
               </button>
-            </div>
-          )}
-        </div>
-
-        {/* Mixing Studio */}
-        <div className="mb-8">
-          <MixingStudio allPaints={citadelColors} />
-        </div>
-
-        {/* Paint Library */}
-        <div className="mb-6">
-          <h2 className="text-3xl font-bold mb-2 text-gradient-purple">Paint Library</h2>
-          <div className="text-gray-600 font-medium">
-            Showing {filteredPaints.length} of {citadelColors.length} paints
+            )}
           </div>
-        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          {filteredPaints.map(paint => (
-            <ColorCard
-              key={paint.id}
-              paint={paint}
-              onAddToStock={handleAddToStock}
-              onAddToWishlist={handleAddToWishlist}
-              isInStock={!!stock.find(p => p.id === paint.id)}
-              isInWishlist={!!wishlist.find(p => p.id === paint.id)}
-            />
-          ))}
+          {/* Mixing Studio */}
+          <MixingStudio allPaints={citadelColors} />
+
+          {/* Paint Library */}
+          <div>
+            <div className="mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-100 mb-2">Paint Library</h2>
+              <div className="text-slate-400 font-medium">
+                Showing {filteredPaints.length} of {citadelColors.length} paints
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {filteredPaints.map(paint => (
+                <ColorCard
+                  key={paint.id}
+                  paint={paint}
+                  onAddToStock={handleAddToStock}
+                  onAddToWishlist={handleAddToWishlist}
+                  isInStock={!!stock.find(p => p.id === paint.id)}
+                  isInWishlist={!!wishlist.find(p => p.id === paint.id)}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </main>
     </div>
