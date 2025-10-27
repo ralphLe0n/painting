@@ -10,8 +10,23 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 }
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
+// Check if Firebase is configured
+const isFirebaseConfigured = firebaseConfig.apiKey && firebaseConfig.projectId
 
-// Initialize Firestore
-export const db = getFirestore(app)
+let app = null
+let db = null
+
+// Initialize Firebase only if configured
+if (isFirebaseConfigured) {
+  try {
+    app = initializeApp(firebaseConfig)
+    db = getFirestore(app)
+    console.log('Firebase initialized successfully')
+  } catch (error) {
+    console.warn('Firebase initialization failed:', error.message)
+  }
+} else {
+  console.warn('Firebase not configured. App will run in local-only mode.')
+}
+
+export { db, isFirebaseConfigured }

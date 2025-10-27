@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react'
-import { db } from '../firebase/config'
+import { db, isFirebaseConfigured } from '../firebase/config'
 import {
   collection,
   addDoc,
@@ -27,6 +27,13 @@ export function PaintProvider({ children }) {
   // Load stock and wishlist from Firebase
   useEffect(() => {
     const loadData = async () => {
+      // If Firebase is not configured, skip loading and use local state
+      if (!isFirebaseConfigured || !db) {
+        console.log('Running in local-only mode (Firebase not configured)')
+        setLoading(false)
+        return
+      }
+
       try {
         // Load stock
         const stockRef = collection(db, 'users', userId, 'inStock')
@@ -57,6 +64,12 @@ export function PaintProvider({ children }) {
   }, [])
 
   const addToStock = async (paint) => {
+    if (!isFirebaseConfigured || !db) {
+      // Local-only mode
+      setStock([...stock, paint])
+      return
+    }
+
     try {
       const stockRef = collection(db, 'users', userId, 'inStock')
       const docRef = await addDoc(stockRef, {
@@ -72,6 +85,12 @@ export function PaintProvider({ children }) {
   }
 
   const removeFromStock = async (paint) => {
+    if (!isFirebaseConfigured || !db) {
+      // Local-only mode
+      setStock(stock.filter(p => p.id !== paint.id))
+      return
+    }
+
     try {
       const paintInStock = stock.find(p => p.id === paint.id)
       if (paintInStock?.firestoreId) {
@@ -86,6 +105,12 @@ export function PaintProvider({ children }) {
   }
 
   const addToWishlist = async (paint) => {
+    if (!isFirebaseConfigured || !db) {
+      // Local-only mode
+      setWishlist([...wishlist, paint])
+      return
+    }
+
     try {
       const wishlistRef = collection(db, 'users', userId, 'wishlist')
       const docRef = await addDoc(wishlistRef, {
@@ -101,6 +126,12 @@ export function PaintProvider({ children }) {
   }
 
   const removeFromWishlist = async (paint) => {
+    if (!isFirebaseConfigured || !db) {
+      // Local-only mode
+      setWishlist(wishlist.filter(p => p.id !== paint.id))
+      return
+    }
+
     try {
       const paintInWishlist = wishlist.find(p => p.id === paint.id)
       if (paintInWishlist?.firestoreId) {
