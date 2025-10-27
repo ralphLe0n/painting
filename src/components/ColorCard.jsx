@@ -7,10 +7,10 @@ function ColorCard({ paint, onAddToStock, onAddToWishlist, isInStock, isInWishli
       ></div>
       <h3 className="font-bold text-sm mb-2 text-gray-800 truncate">{paint.name}</h3>
       <div className="flex flex-wrap gap-1 mb-2">
-        <span className="text-xs bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 px-2 py-1 rounded-lg font-medium">
+        <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-lg font-medium">
           {paint.type}
         </span>
-        <span className="text-xs bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 px-2 py-1 rounded-lg font-medium">
+        <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-lg font-medium">
           {paint.primaryColor}
         </span>
       </div>
@@ -20,8 +20,8 @@ function ColorCard({ paint, onAddToStock, onAddToWishlist, isInStock, isInWishli
           onClick={() => onAddToStock(paint)}
           className={`flex-1 text-xs px-3 py-2 rounded-lg font-semibold transition-all ${
             isInStock
-              ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-md'
-              : 'bg-gray-100 text-gray-700 hover:bg-gradient-to-r hover:from-emerald-100 hover:to-green-100 hover:text-green-700'
+              ? 'bg-gradient-emerald text-white shadow-md'
+              : 'bg-gray-100 text-gray-700 hover:bg-green-100 hover:text-green-700'
           }`}
         >
           {isInStock ? 'In Stock' : 'Add Stock'}
@@ -30,8 +30,8 @@ function ColorCard({ paint, onAddToStock, onAddToWishlist, isInStock, isInWishli
           onClick={() => onAddToWishlist(paint)}
           className={`flex-1 text-xs px-3 py-2 rounded-lg font-semibold transition-all ${
             isInWishlist
-              ? 'bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-md'
-              : 'bg-gray-100 text-gray-700 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 hover:text-orange-700'
+              ? 'bg-gradient-amber text-white shadow-md'
+              : 'bg-gray-100 text-gray-700 hover:bg-orange-100 hover:text-orange-700'
           }`}
         >
           {isInWishlist ? 'Wishlisted' : 'Add Wish'}

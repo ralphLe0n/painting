@@ -53,8 +53,8 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
-      <header className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-8 shadow-2xl">
+    <div className="min-h-screen bg-gradient-purple-pink">
+      <header className="bg-gradient-header text-white p-8 shadow-2xl">
         <div className="container mx-auto">
           <h1 className="text-4xl font-bold mb-2 tracking-tight">Citadel Paint Mixer</h1>
           <p className="text-purple-100 text-lg">Manage your paint collection and create custom mixes</p>
@@ -63,11 +63,11 @@ function App() {
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8 flex gap-4 flex-wrap">
-          <div className="bg-gradient-to-br from-emerald-500 to-green-600 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+          <div className="bg-gradient-emerald text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
             <div className="text-sm font-medium opacity-90">In Stock</div>
             <div className="text-2xl font-bold">{stock.length}</div>
           </div>
-          <div className="bg-gradient-to-br from-amber-500 to-orange-600 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+          <div className="bg-gradient-amber text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
             <div className="text-sm font-medium opacity-90">Wishlist</div>
             <div className="text-2xl font-bold">{wishlist.length}</div>
           </div>
@@ -112,7 +112,7 @@ function App() {
                   setFilterType('All')
                   setFilterColor('All')
                 }}
-                className="px-6 py-3 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-xl hover:from-red-600 hover:to-pink-700 transition-all shadow-md hover:shadow-lg font-medium"
+                className="px-6 py-3 bg-gradient-red-pink text-white rounded-xl hover:opacity-90 transition-all shadow-md hover:shadow-lg font-medium"
               >
                 Clear Filters
               </button>
@@ -127,7 +127,7 @@ function App() {
 
         {/* Paint Library */}
         <div className="mb-6">
-          <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Paint Library</h2>
+          <h2 className="text-3xl font-bold mb-2 text-gradient-purple">Paint Library</h2>
           <div className="text-gray-600 font-medium">
             Showing {filteredPaints.length} of {citadelColors.length} paints
           </div>
