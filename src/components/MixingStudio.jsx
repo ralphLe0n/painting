@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react'
-import { Palette, Trash2 } from 'lucide-react'
-import { mixColors, generateFormula } from '../utils/colorMixer'
+import { Palette, Trash2, Target } from 'lucide-react'
+import { mixColors, generateFormula, findClosestPaint } from '../utils/colorMixer'
 
 function MixingStudio({ allPaints }) {
   const [selectedPaints, setSelectedPaints] = useState([])
@@ -82,6 +82,12 @@ function MixingStudio({ allPaints }) {
     return generateFormula(paintsWithRatios)
   }, [selectedPaints, normalizedRatios])
 
+  // Find closest paint from palette
+  const closestMatch = useMemo(() => {
+    if (!mixedColor || selectedPaints.length === 0) return null
+    return findClosestPaint(mixedColor, allPaints)
+  }, [mixedColor, allPaints, selectedPaints.length])
+
   // Filter available paints for selection
   const filteredAvailablePaints = useMemo(() => {
     return allPaints.filter(paint =>
@@ -142,12 +148,41 @@ function MixingStudio({ allPaints }) {
         <div className="bg-slate-900 rounded-xl p-6 border border-slate-700 mb-6">
           <h3 className="text-sm font-medium text-slate-400 mb-3">Mixed Color Preview</h3>
           <div className="w-full h-32 rounded-xl shadow-2xl border-2 border-slate-600 mb-4" style={{backgroundColor: mixedColor}} />
-          <div className="text-center">
+          <div className="text-center mb-4">
             <div className="text-xl font-mono font-bold text-slate-100 mb-2">{mixedColor}</div>
             <div className="text-sm text-slate-400">
               {formula}
             </div>
           </div>
+
+          {/* Closest match */}
+          {closestMatch && (
+            <div className="border-t border-slate-700 pt-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Target className="w-4 h-4 text-indigo-400" />
+                <h4 className="text-sm font-medium text-slate-400">Closest Citadel Paint</h4>
+              </div>
+              <div className="flex items-center gap-4 bg-slate-800/50 p-4 rounded-lg border border-slate-600">
+                <div
+                  className="w-16 h-16 rounded-lg border-2 border-slate-600 shadow-md flex-shrink-0"
+                  style={{backgroundColor: closestMatch.paint.hex}}
+                />
+                <div className="flex-1">
+                  <div className="font-semibold text-slate-100 mb-1">{closestMatch.paint.name}</div>
+                  <div className="text-xs text-slate-400 mb-1">
+                    {closestMatch.paint.type} • {closestMatch.paint.primaryColor}
+                  </div>
+                  <div className="text-xs font-mono text-slate-500">{closestMatch.paint.hex}</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-xs text-slate-400 mb-1">Color Distance</div>
+                  <div className="text-sm font-semibold text-indigo-400">
+                    {Math.round(closestMatch.distance)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
