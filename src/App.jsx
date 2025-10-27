@@ -53,33 +53,37 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-blue-600 text-white p-6 shadow-lg">
-        <h1 className="text-3xl font-bold">Citadel Paint Mixer</h1>
-        <p className="text-blue-100 mt-1">Manage your paint collection and create custom mixes</p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+      <header className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-8 shadow-2xl">
+        <div className="container mx-auto">
+          <h1 className="text-4xl font-bold mb-2 tracking-tight">Citadel Paint Mixer</h1>
+          <p className="text-purple-100 text-lg">Manage your paint collection and create custom mixes</p>
+        </div>
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="mb-6 flex gap-4">
-          <div className="bg-green-500 text-white px-4 py-2 rounded-lg shadow">
-            In Stock: {stock.length}
+        <div className="mb-8 flex gap-4 flex-wrap">
+          <div className="bg-gradient-to-br from-emerald-500 to-green-600 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="text-sm font-medium opacity-90">In Stock</div>
+            <div className="text-2xl font-bold">{stock.length}</div>
           </div>
-          <div className="bg-yellow-500 text-white px-4 py-2 rounded-lg shadow">
-            Wishlist: {wishlist.length}
+          <div className="bg-gradient-to-br from-amber-500 to-orange-600 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+            <div className="text-sm font-medium opacity-90">Wishlist</div>
+            <div className="text-2xl font-bold">{wishlist.length}</div>
           </div>
         </div>
 
         <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
 
-        <div className="mb-6 flex flex-wrap gap-4">
+        <div className="mb-8 flex flex-wrap gap-4 bg-white p-6 rounded-xl shadow-md">
           <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Filter by Type
             </label>
             <select
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all bg-gray-50 hover:bg-white"
             >
               {paintTypes.map(type => (
                 <option key={type} value={type}>{type}</option>
@@ -87,13 +91,13 @@ function App() {
             </select>
           </div>
           <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Filter by Color
             </label>
             <select
               value={filterColor}
               onChange={(e) => setFilterColor(e.target.value)}
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all bg-gray-50 hover:bg-white"
             >
               {primaryColors.map(color => (
                 <option key={color} value={color}>{color}</option>
@@ -108,7 +112,7 @@ function App() {
                   setFilterType('All')
                   setFilterColor('All')
                 }}
-                className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                className="px-6 py-3 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-xl hover:from-red-600 hover:to-pink-700 transition-all shadow-md hover:shadow-lg font-medium"
               >
                 Clear Filters
               </button>
@@ -122,9 +126,11 @@ function App() {
         </div>
 
         {/* Paint Library */}
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">Paint Library</h2>
-        <div className="mb-4 text-gray-600">
-          Showing {filteredPaints.length} of {citadelColors.length} paints
+        <div className="mb-6">
+          <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Paint Library</h2>
+          <div className="text-gray-600 font-medium">
+            Showing {filteredPaints.length} of {citadelColors.length} paints
+          </div>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">

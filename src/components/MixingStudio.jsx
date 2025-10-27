@@ -90,42 +90,44 @@ function MixingStudio({ allPaints }) {
   }, [allPaints, searchTerm, selectedPaints])
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Paint Mixing Studio</h2>
+    <div className="bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-2xl p-8 border border-purple-100">
+      <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Paint Mixing Studio</h2>
 
       {/* Selected Paints */}
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold mb-3 text-gray-700">
-          Selected Paints ({selectedPaints.length}/4)
+      <div className="mb-8">
+        <h3 className="text-xl font-bold mb-4 text-gray-800">
+          Selected Paints <span className="text-purple-600">({selectedPaints.length}/4)</span>
         </h3>
 
         {selectedPaints.length === 0 ? (
-          <div className="text-gray-500 italic">No paints selected. Add paints below to start mixing.</div>
+          <div className="text-gray-500 italic bg-white p-6 rounded-xl border-2 border-dashed border-gray-300">
+            No paints selected. Add paints below to start mixing.
+          </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-4">
             {selectedPaints.map(paint => (
-              <div key={paint.id} className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+              <div key={paint.id} className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-gray-200">
                 <div
-                  className="w-12 h-12 rounded border-2 border-gray-300 flex-shrink-0"
+                  className="w-16 h-16 rounded-xl border-4 border-gray-200 flex-shrink-0 shadow-md"
                   style={{ backgroundColor: paint.hex }}
                 ></div>
                 <div className="flex-1">
-                  <div className="font-medium text-gray-800">{paint.name}</div>
+                  <div className="font-semibold text-gray-800 mb-2">{paint.name}</div>
                   <input
                     type="range"
                     min="0"
                     max="100"
                     value={Math.round((ratios[paint.id] || 0) * 100)}
                     onChange={(e) => handleRatioChange(paint.id, e.target.value)}
-                    className="w-full"
+                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
                   />
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm font-semibold text-purple-600 mt-1">
                     {Math.round((normalizedRatios[paint.id] || 0) * 100)}%
                   </div>
                 </div>
                 <button
                   onClick={() => handleRemovePaint(paint.id)}
-                  className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm"
+                  className="px-4 py-2 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-xl hover:from-red-600 hover:to-pink-700 transition-all shadow-md hover:shadow-lg text-sm font-medium"
                 >
                   Remove
                 </button>
@@ -137,16 +139,25 @@ function MixingStudio({ allPaints }) {
 
       {/* Mixed Color Preview */}
       {mixedColor && (
-        <div className="mb-6 bg-gray-50 p-6 rounded-lg">
-          <h3 className="text-lg font-semibold mb-3 text-gray-700">Mixed Color</h3>
-          <div className="flex items-center gap-6">
-            <div
-              className="w-32 h-32 rounded-lg border-4 border-gray-300 shadow-lg"
-              style={{ backgroundColor: mixedColor }}
-            ></div>
-            <div className="flex-1">
-              <div className="text-2xl font-mono font-bold text-gray-800 mb-2">{mixedColor}</div>
-              <div className="text-sm text-gray-600 leading-relaxed">{formula}</div>
+        <div className="mb-8 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-8 rounded-2xl border-2 border-purple-200 shadow-xl">
+          <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Color Preview</h3>
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div
+                className="relative w-48 h-48 rounded-2xl border-4 border-white shadow-2xl transform transition-transform duration-300 group-hover:scale-105"
+                style={{ backgroundColor: mixedColor }}
+              ></div>
+            </div>
+            <div className="flex-1 text-center md:text-left">
+              <div className="inline-block bg-white px-6 py-3 rounded-xl shadow-lg mb-4">
+                <div className="text-xs text-gray-500 font-medium mb-1">HEX COLOR</div>
+                <div className="text-3xl font-mono font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">{mixedColor}</div>
+              </div>
+              <div className="bg-white p-4 rounded-xl shadow-md">
+                <div className="text-xs text-gray-500 font-medium mb-2">FORMULA</div>
+                <div className="text-base text-gray-700 leading-relaxed font-medium">{formula}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -155,31 +166,31 @@ function MixingStudio({ allPaints }) {
       {/* Add Paints */}
       {selectedPaints.length < 4 && (
         <div>
-          <h3 className="text-lg font-semibold mb-3 text-gray-700">Add Paints to Mix</h3>
+          <h3 className="text-xl font-bold mb-4 text-gray-800">Add Paints to Mix</h3>
           <input
             type="text"
             placeholder="Search paints..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-4 py-2 mb-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+            className="w-full px-5 py-3 mb-6 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all bg-white shadow-sm"
           />
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-96 overflow-y-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-96 overflow-y-auto p-1">
             {filteredAvailablePaints.slice(0, 20).map(paint => (
               <button
                 key={paint.id}
                 onClick={() => handleAddPaint(paint)}
-                className="flex items-center gap-2 p-2 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors text-left"
+                className="flex items-center gap-2 p-3 bg-white hover:bg-gradient-to-br hover:from-indigo-50 hover:to-purple-50 rounded-xl transition-all text-left border border-gray-200 hover:border-purple-300 shadow-sm hover:shadow-md"
               >
                 <div
-                  className="w-8 h-8 rounded border-2 border-gray-300 flex-shrink-0"
+                  className="w-10 h-10 rounded-lg border-2 border-gray-300 flex-shrink-0 shadow-sm"
                   style={{ backgroundColor: paint.hex }}
                 ></div>
-                <div className="text-xs font-medium text-gray-800 truncate">{paint.name}</div>
+                <div className="text-xs font-semibold text-gray-800 truncate">{paint.name}</div>
               </button>
             ))}
           </div>
           {filteredAvailablePaints.length > 20 && (
-            <div className="text-sm text-gray-500 mt-2 text-center">
+            <div className="text-sm text-gray-500 mt-4 text-center bg-white p-3 rounded-xl">
               Showing 20 of {filteredAvailablePaints.length} paints. Use search to narrow down.
             </div>
           )}
