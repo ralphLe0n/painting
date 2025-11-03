@@ -46,3 +46,36 @@ export function generateFormula(paints) {
     .map(({ name, ratio }) => `${Math.round(ratio * 100)}% ${name}`)
     .join(' + ')
 }
+
+// Calculate color distance using Euclidean distance in RGB space
+export function colorDistance(hex1, hex2) {
+  const rgb1 = hexToRgb(hex1)
+  const rgb2 = hexToRgb(hex2)
+
+  const rDiff = rgb1.r - rgb2.r
+  const gDiff = rgb1.g - rgb2.g
+  const bDiff = rgb1.b - rgb2.b
+
+  return Math.sqrt(rDiff * rDiff + gDiff * gDiff + bDiff * bDiff)
+}
+
+// Find the closest paint from a palette to a target color
+export function findClosestPaint(targetHex, paints) {
+  if (!paints || paints.length === 0) return null
+
+  let closestPaint = paints[0]
+  let minDistance = colorDistance(targetHex, paints[0].hex)
+
+  for (let i = 1; i < paints.length; i++) {
+    const distance = colorDistance(targetHex, paints[i].hex)
+    if (distance < minDistance) {
+      minDistance = distance
+      closestPaint = paints[i]
+    }
+  }
+
+  return {
+    paint: closestPaint,
+    distance: minDistance
+  }
+}

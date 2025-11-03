@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react'
-import { mixColors, generateFormula } from '../utils/colorMixer'
+import { Palette, Trash2, Target } from 'lucide-react'
+import { mixColors, generateFormula, findClosestPaint } from '../utils/colorMixer'
 
 function MixingStudio({ allPaints }) {
   const [selectedPaints, setSelectedPaints] = useState([])
@@ -81,6 +82,12 @@ function MixingStudio({ allPaints }) {
     return generateFormula(paintsWithRatios)
   }, [selectedPaints, normalizedRatios])
 
+  // Find closest paint from palette
+  const closestMatch = useMemo(() => {
+    if (!mixedColor || selectedPaints.length === 0) return null
+    return findClosestPaint(mixedColor, allPaints)
+  }, [mixedColor, allPaints, selectedPaints.length])
+
   // Filter available paints for selection
   const filteredAvailablePaints = useMemo(() => {
     return allPaints.filter(paint =>
@@ -90,107 +97,125 @@ function MixingStudio({ allPaints }) {
   }, [allPaints, searchTerm, selectedPaints])
 
   return (
-    <div className="bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-2xl p-8 border border-purple-100">
-      <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Paint Mixing Studio</h2>
+    <div className="bg-slate-800 rounded-xl border border-slate-700 p-6 shadow-lg">
+      <div className="flex items-center gap-2 mb-6">
+        <Palette className="w-6 h-6 text-indigo-400" />
+        <h2 className="text-2xl font-bold text-slate-100">Paint Mixing Studio</h2>
+      </div>
 
-      {/* Selected Paints */}
-      <div className="mb-8">
-        <h3 className="text-xl font-bold mb-4 text-gray-800">
-          Selected Paints <span className="text-purple-600">({selectedPaints.length}/4)</span>
-        </h3>
-
+      {/* Selected paints with sliders */}
+      <div className="space-y-4 mb-6">
         {selectedPaints.length === 0 ? (
-          <div className="text-gray-500 italic bg-white p-6 rounded-xl border-2 border-dashed border-gray-300">
+          <div className="text-slate-400 italic text-center py-8 bg-slate-700/30 rounded-lg border-2 border-dashed border-slate-600">
             No paints selected. Add paints below to start mixing.
           </div>
         ) : (
-          <div className="space-y-4">
-            {selectedPaints.map(paint => (
-              <div key={paint.id} className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-gray-200">
+          selectedPaints.map(paint => (
+            <div key={paint.id} className="bg-slate-700/50 rounded-lg p-4">
+              <div className="flex items-center gap-3 mb-3">
                 <div
-                  className="w-16 h-16 rounded-xl border-4 border-gray-200 flex-shrink-0 shadow-md"
-                  style={{ backgroundColor: paint.hex }}
-                ></div>
-                <div className="flex-1">
-                  <div className="font-semibold text-gray-800 mb-2">{paint.name}</div>
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={Math.round((ratios[paint.id] || 0) * 100)}
-                    onChange={(e) => handleRatioChange(paint.id, e.target.value)}
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
-                  />
-                  <div className="text-sm font-semibold text-purple-600 mt-1">
-                    {Math.round((normalizedRatios[paint.id] || 0) * 100)}%
-                  </div>
-                </div>
+                  className="w-10 h-10 rounded-lg border-2 border-slate-600 shadow-md hover:scale-110 transition-transform duration-200"
+                  style={{backgroundColor: paint.hex}}
+                />
+                <span className="font-medium text-slate-100 flex-1">{paint.name}</span>
                 <button
                   onClick={() => handleRemovePaint(paint.id)}
-                  className="px-4 py-2 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-xl hover:from-red-600 hover:to-pink-700 transition-all shadow-md hover:shadow-lg text-sm font-medium"
+                  className="text-red-400 hover:text-red-300 transition-colors"
                 >
-                  Remove
+                  <Trash2 className="w-4 h-4" />
                 </button>
               </div>
-            ))}
-          </div>
+
+              {/* Slider */}
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={Math.round((ratios[paint.id] || 0) * 100)}
+                onChange={(e) => handleRatioChange(paint.id, e.target.value)}
+                className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-indigo-500"
+              />
+              <div className="text-right text-sm text-slate-400 mt-1">
+                {Math.round((normalizedRatios[paint.id] || 0) * 100)}%
+              </div>
+            </div>
+          ))
         )}
       </div>
 
-      {/* Mixed Color Preview */}
+      {/* Color preview */}
       {mixedColor && (
-        <div className="mb-8 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-8 rounded-2xl border-2 border-purple-200 shadow-xl">
-          <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Color Preview</h3>
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-              <div
-                className="relative w-48 h-48 rounded-2xl border-4 border-white shadow-2xl transform transition-transform duration-300 group-hover:scale-105"
-                style={{ backgroundColor: mixedColor }}
-              ></div>
-            </div>
-            <div className="flex-1 text-center md:text-left">
-              <div className="inline-block bg-white px-6 py-3 rounded-xl shadow-lg mb-4">
-                <div className="text-xs text-gray-500 font-medium mb-1">HEX COLOR</div>
-                <div className="text-3xl font-mono font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">{mixedColor}</div>
-              </div>
-              <div className="bg-white p-4 rounded-xl shadow-md">
-                <div className="text-xs text-gray-500 font-medium mb-2">FORMULA</div>
-                <div className="text-base text-gray-700 leading-relaxed font-medium">{formula}</div>
-              </div>
+        <div className="bg-slate-900 rounded-xl p-6 border border-slate-700 mb-6">
+          <h3 className="text-sm font-medium text-slate-400 mb-3">Mixed Color Preview</h3>
+          <div className="w-full h-32 rounded-xl shadow-2xl border-2 border-slate-600 mb-4" style={{backgroundColor: mixedColor}} />
+          <div className="text-center mb-4">
+            <div className="text-xl font-mono font-bold text-slate-100 mb-2">{mixedColor}</div>
+            <div className="text-sm text-slate-400">
+              {formula}
             </div>
           </div>
+
+          {/* Closest match */}
+          {closestMatch && (
+            <div className="border-t border-slate-700 pt-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Target className="w-4 h-4 text-indigo-400" />
+                <h4 className="text-sm font-medium text-slate-400">Closest Citadel Paint</h4>
+              </div>
+              <div className="flex items-center gap-4 bg-slate-800/50 p-4 rounded-lg border border-slate-600">
+                <div
+                  className="w-16 h-16 rounded-lg border-2 border-slate-600 shadow-md flex-shrink-0"
+                  style={{backgroundColor: closestMatch.paint.hex}}
+                />
+                <div className="flex-1">
+                  <div className="font-semibold text-slate-100 mb-1">{closestMatch.paint.name}</div>
+                  <div className="text-xs text-slate-400 mb-1">
+                    {closestMatch.paint.type} • {closestMatch.paint.primaryColor}
+                  </div>
+                  <div className="text-xs font-mono text-slate-500">{closestMatch.paint.hex}</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-xs text-slate-400 mb-1">Color Distance</div>
+                  <div className="text-sm font-semibold text-indigo-400">
+                    {Math.round(closestMatch.distance)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
-      {/* Add Paints */}
+      {/* Add paints section */}
       {selectedPaints.length < 4 && (
         <div>
-          <h3 className="text-xl font-bold mb-4 text-gray-800">Add Paints to Mix</h3>
+          <h3 className="text-lg font-semibold text-slate-100 mb-3">
+            Add Paints to Mix ({selectedPaints.length}/4)
+          </h3>
           <input
             type="text"
             placeholder="Search paints..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-5 py-3 mb-6 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all bg-white shadow-sm"
+            className="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-2.5 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all mb-4"
           />
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-96 overflow-y-auto p-1">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-96 overflow-y-auto scrollbar-thin">
             {filteredAvailablePaints.slice(0, 20).map(paint => (
               <button
                 key={paint.id}
                 onClick={() => handleAddPaint(paint)}
-                className="flex items-center gap-2 p-3 bg-white hover:bg-gradient-to-br hover:from-indigo-50 hover:to-purple-50 rounded-xl transition-all text-left border border-gray-200 hover:border-purple-300 shadow-sm hover:shadow-md"
+                className="flex items-center gap-2 p-3 bg-slate-700 hover:bg-slate-600 rounded-lg transition-colors duration-200 text-left border border-slate-600"
               >
                 <div
-                  className="w-10 h-10 rounded-lg border-2 border-gray-300 flex-shrink-0 shadow-sm"
-                  style={{ backgroundColor: paint.hex }}
-                ></div>
-                <div className="text-xs font-semibold text-gray-800 truncate">{paint.name}</div>
+                  className="w-8 h-8 rounded border-2 border-slate-600 flex-shrink-0"
+                  style={{backgroundColor: paint.hex}}
+                />
+                <div className="text-xs font-medium text-slate-100 truncate">{paint.name}</div>
               </button>
             ))}
           </div>
           {filteredAvailablePaints.length > 20 && (
-            <div className="text-sm text-gray-500 mt-4 text-center bg-white p-3 rounded-xl">
+            <div className="text-sm text-slate-400 mt-2 text-center">
               Showing 20 of {filteredAvailablePaints.length} paints. Use search to narrow down.
             </div>
           )}

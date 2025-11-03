@@ -24,7 +24,7 @@ if (isFirebaseConfigured) {
     console.warn('Firebase initialization failed:', error.message)
   }
 } else {
-  console.warn('Firebase not configured. App will use local state only.')
+  console.warn('Firebase not configured. App will run in local-only mode.')
 }
 
-export { db }
+export { db, isFirebaseConfigured }
