@@ -13,13 +13,11 @@ const firebaseConfig = {
 // Check if Firebase is configured
 const isFirebaseConfigured = firebaseConfig.apiKey && firebaseConfig.projectId
 
-let app = null
-let db = null
-
 // Initialize Firebase only if configured
+let db = null
 if (isFirebaseConfigured) {
   try {
-    app = initializeApp(firebaseConfig)
+    const app = initializeApp(firebaseConfig)
     db = getFirestore(app)
     console.log('Firebase initialized successfully')
   } catch (error) {
